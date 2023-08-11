@@ -333,4 +333,20 @@ table {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 20px;
+}
+
+.more {
+  width: 176px;
+  height: 45px;
+  border: 1px solid #4C3DB2;
+  color: #4C3DB2;
+  font-size: 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  background-color: #fff;
+  cursor: pointer;
+  margin: 20px auto;
+}
+.more:hover {
+  background-color: #9E98DC;
 }/*# sourceMappingURL=style.css.map */

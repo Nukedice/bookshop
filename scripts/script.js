@@ -37,8 +37,8 @@ document.addEventListener('load', initSlider())
     const genreList = document.querySelectorAll('.list_item')
     function showMoreCards() {
         removeCards();
-        getCards();
-        return quantityCards += 6; //не изменяет ссылку + плохое решение
+        quantityCards += 6;
+        getCards(quantityCards, category);
     }
     more.addEventListener('click',()=>{ showMoreCards(); getCards()})
     function removeCards () {
@@ -56,7 +56,6 @@ document.addEventListener('load', initSlider())
         //str? str.slice(0, 200):'there is no description'
         //str.length>200? str.slice(0, 197) + '...': str         не работает
     }
-
     function createCards(data) {
         //removeCards();
         cards.insertAdjacentHTML('beforeend', `<div class="card">
@@ -74,12 +73,25 @@ document.addEventListener('load', initSlider())
         </div>
     </div>`)
     }
-    function getCards() {
-    fetch(URL).then(function(res) {
+    function getCards(count, genre) {
+    fetch(`https://www.googleapis.com/books/v1/volumes?q="subject:${genre}"&key=${API_KEY}&printType=books&startIndex=0&maxResults=${count}&langRestrict=en`).then(function(res) {
         return res.json()
     }).then(function(data) {
-        console.log(data.items)
         data.items.map(card => createCards(card))
     }).catch(function(err) { console.log(err)})
 }
-document.addEventListener('load', getCards())
+document.addEventListener('load', getCards(quantityCards, category))
+
+function changeCategory () {
+    for (k in genreList) {
+        genreList[k].addEventListener('click', (e) => {
+            document.querySelector('.list_item__active').classList.remove('list_item__active');
+            e.target.classList.add('list_item__active')
+            category = e.target.innerHTML.replace(/\s/g, '')
+            quantityCards = 6;
+            removeCards();
+            getCards(quantityCards, category)
+        })
+    }
+}
+document.addEventListener('load', changeCategory())
