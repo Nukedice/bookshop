@@ -345,6 +345,7 @@ table {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 20px;
+    z-index: 2;
 }
 .more {
     width: 176px;
@@ -361,4 +362,13 @@ table {
             &:hover {
                 background-color: #9E98DC;
             }
+}
+.sidebar::before {
+    margin-top: -45px;
+    left: 0;
+    content: "";
+    position: absolute;
+    height: 710px;
+    width: 30%;
+    background: #EFEEF6;
 }

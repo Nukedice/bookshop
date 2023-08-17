@@ -69,7 +69,7 @@ document.addEventListener('load', initSlider())
             </div>
             <div class="discription">${makeShorterDescription(data.volumeInfo.description)}</div>
             <div class="price">price</div>
-            <button class="buy_btn">button</button>
+            <button class="buy_btn">Buy now</button>
         </div>
     </div>`)
     }
